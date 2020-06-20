@@ -1,5 +1,5 @@
 const fastify = require("fastify")({ logger: true });
-const path = require('path')
+const path = require("path");
 
 require("dotenv").config();
 
@@ -7,7 +7,7 @@ fastify.register(require("point-of-view"), {
   engine: {
     ejs: require("ejs"),
   },
-  root: path.join(__dirname, 'view'),
+  root: path.join(__dirname, "view"),
 });
 
 fastify.register(require("fastify-multipart"), { addToBody: true });

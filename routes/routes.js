@@ -1,7 +1,7 @@
 const concat = require("concat-stream");
 const AWS = require("aws-sdk");
 const uuid = require("uuid4");
-const {ObjectId} = require('bson')
+const { ObjectId } = require("bson");
 
 const s3 = new AWS.S3({
   accessKeyId: process.env.AWS_ID,
@@ -44,20 +44,20 @@ const routes = async (fastify, options) => {
     });
   });
 
-  fastify.get("/play/:id",async(req,reply)=>{
-    const id = req.params.id
-    console.log(id)
+  fastify.get("/play/:id", async (req, reply) => {
+    const id = req.params.id;
+    console.log(id);
     const query = {
-      _id: ObjectId.createFromHexString(id)
-    }
-    const post = await collection.findOne(query)
+      _id: ObjectId.createFromHexString(id),
+    };
+    const post = await collection.findOne(query);
     const options = {
-      url : post.url,
+      url: post.url,
       title: post.title,
-      description: post.description
-    }
-    reply.view('index.ejs',options)
-  })
+      description: post.description,
+    };
+    reply.view("index.ejs", options);
+  });
 };
 
 module.exports = routes;
